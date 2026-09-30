@@ -156,6 +156,12 @@
       post('setMuted', false); post('setVolume', 1); post('play');
       e.currentTarget.hidden = true;
     });
+    $('.venlarge', card).addEventListener('click', function (e) {
+      e.stopPropagation();
+      startCard(card, false);
+      var req = card.requestFullscreen || card.webkitRequestFullscreen;
+      if (req) { try { req.call(card); } catch (x) {} }
+    });
   });
   if (!reduce && 'IntersectionObserver' in window) {
     var vio = new IntersectionObserver(function (entries) {
